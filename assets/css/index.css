@@ -1,0 +1,23 @@
+#superheros-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.superhero{
+    width: 250px;
+    height : 250px;
+    border: 2px solid black;
+    margin : 10px;
+}
+
+.image{
+    height : 150px;
+    width: 250px;
+    border: 2px solid black;
+}
+
+img{
+    height : 150px;
+    width: 150px;
+    text-align: center; 
+}

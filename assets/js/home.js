@@ -93,6 +93,7 @@ function displayInfo(data){
 
             // add favorite button  
             let favBtn = document.createElement('div');
+            favBtn.setAttribute('class','fav-btn');
             if(localStorage.getItem('favHeroes')!== null){
                let heroes = JSON.parse(localStorage.getItem('favHeroes'));
                if(heroes.includes(hero.id)){

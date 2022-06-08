@@ -1,9 +1,8 @@
-var heroID = localStorage.getItem('id');
+// Get id fromt the localStorage of the hero's info to be viewed 
+let heroID = localStorage.getItem('id');
 
-console.log(heroID);
-
+// Get hero info from the api by making request
 function getHeroInfo(){
-
     let url = `https://www.superheroapi.com/api.php/5233257620086023/${heroID}`;
     console.log(url);
     let xhrRequest = new XMLHttpRequest();
@@ -16,28 +15,27 @@ function getHeroInfo(){
     }
 }
 
+// Display info about the hero on the page 
 function displayInfo(hero){
 
     let infoPage = document.getElementById('info-page');
-    // let infoPage = document.createElement('div');
-    // infoPage.setAttribute('id','info-page')
-    console.log('Hero------->',hero);
 
+    // Create new div to add image of the hero
     let imageDiv = document.createElement('div');
     imageDiv.setAttribute('id','image');
-    // let imageDiv = document.getElementById('image');
-
     let image = document.createElement('img');
+    // set url to the image 
     image.setAttribute('src',`${hero.image.url}`);
     imageDiv.appendChild(image);
     
-
+    // Create div to display name of hero 
     let heroName = document.createElement('div');
     heroName.innerHTML = `<h2>${hero.name}</h2>`
 
 
 
-    // let appearanceDiv = document.getElementById('appearance');
+    // Appearance Div
+    // Create div to show apperance info of the hero
     let appearanceDiv = document.createElement('div');
     appearanceDiv.setAttribute('id','appearance')
     appearanceDiv.innerHTML = `<h3>Appereance</h3>`;
@@ -56,7 +54,7 @@ function displayInfo(hero){
     let eyeColor = document.createElement('p');
     eyeColor.innerHTML = `<span>Eye Color :</span> ${hero.appearance['eye-color']}`;
 
-
+    // add the created div to the the appearanceDiv 
     appearanceDiv.appendChild(gender);
     appearanceDiv.appendChild(race);
     appearanceDiv.appendChild(height);
@@ -66,7 +64,7 @@ function displayInfo(hero){
 
     // Biograpghy
 
-    // let bioDiv = document.getElementById('bio');
+    // Create div to display biography of the hero
     let bioDiv = document.createElement('div');
     bioDiv.setAttribute('id','bio');
     bioDiv.innerHTML = `<h3>Biography</h3>`
@@ -85,7 +83,8 @@ function displayInfo(hero){
 
     let publisher = document.createElement('p');
     publisher.innerHTML = `<span>Publisher:</span> ${hero.biography.publisher}`;
-
+    
+    // add the created divs to the Biodiv
     bioDiv.appendChild(fullName);
     bioDiv.appendChild(allignment);
     bioDiv.appendChild(firstApperance);
@@ -93,9 +92,8 @@ function displayInfo(hero){
     bioDiv.appendChild(publisher);
 
 
-   
-
-    // let powerDiv = document.getElementById('power-stats');
+    // Power Stats 
+    // create div to display power stats of the hero
     let powerDiv = document.createElement('div');
     powerDiv.setAttribute('id','power-stats');
     powerDiv.innerHTML = `<h3>Power Stats</h3>`;
@@ -115,6 +113,7 @@ function displayInfo(hero){
     let power = document.createElement('p');
     power.innerHTML = `<span>Power :</span> ${hero.powerstats.power}`;
 
+    // add the created divs to the power Div 
     powerDiv.appendChild(intell);
     powerDiv.appendChild(strength);
     powerDiv.appendChild(speed);
@@ -122,7 +121,8 @@ function displayInfo(hero){
     powerDiv.appendChild(power);
 
 
-    // let workDiv = document.getElementById('work');
+    // Work 
+    // Create work div display info about occupation and base
     let workDiv = document.createElement('div');
     workDiv.setAttribute('id','work');
     workDiv.innerHTML = `<h3>Work</h3>`;
@@ -133,16 +133,11 @@ function displayInfo(hero){
     let base = document.createElement('p');
     base.innerHTML = `<span>Base:</span> ${hero.work.base}`;
 
+    // add created divs to the workDiv
     workDiv.appendChild(occupation);
     workDiv.appendChild(base);
 
-
-
-
-    
-    // imageDiv.appendChild(heroName);
-    // imageDiv.appendChild(appearanceDiv);
-    
+    // add all create divs to the main page
     infoPage.appendChild(imageDiv);
     infoPage.appendChild(heroName);
     infoPage.appendChild(bioDiv);

@@ -1,8 +1,10 @@
+
 body{
   margin: 0;
   padding: 0;
   font-family: 'Manrope', sans-serif;
   color : white;
+  background-color: black;
 }
 
 #heading{
@@ -15,6 +17,7 @@ body{
 #search{
     display: flex;
     justify-content: space-around;
+    width: 60%;
     align-items: center;
     margin: 20px auto;
 }
@@ -48,6 +51,7 @@ a{
 
 #bimage{
     position: absolute;
+    background-repeat: repeat-y;
     height: 100%;
     width : 100%;
     z-index: -1;
@@ -55,11 +59,10 @@ a{
 }
 
 #bimage img{
-    /* position: relative; */
     height: 100%;
     width : 100%;
     background: rgba(0,0,0,0.5);
-    /* opacity: 0.89; */
+    background-repeat: repeat-y;
 }
 
 

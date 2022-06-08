@@ -1,12 +1,11 @@
-console.log('Hi')
 
+// Display list of favorite hereos 
 function displayFavHeros(){
-    // console.log('Local storage not empty');
+    // check if any heros are stored in favorite list in localStorage
     if(localStorage.getItem('favHeroes') !== null){
-        console.log('Local storage not empty');
         let heroes = JSON.parse(localStorage.getItem('favHeroes'));
+        // for every hero id in our favorite heros list make an api request to get info about a hero and add info to the page
         heroes.forEach(hero => {
-
             let url = `https://www.superheroapi.com/api.php/5233257620086023/${hero}`;
             console.log(url);
             let xhrRequest = new XMLHttpRequest();
@@ -20,29 +19,36 @@ function displayFavHeros(){
             }
         );
     }
-
 }
 
+// Create a card of a hero and show it the favorite list
 function displayInfo(hero){
 
+    // get the display container  div 
     let display = document.getElementById('fav-list');
 
+    // create heroDiv to store all info about the hero eg: image,name,more-info button
     let heroDiv = document.createElement('div');
+
 
     let sideDiv = document.createElement('div');
     sideDiv.setAttribute('class','sideDiv');
 
+    // Create the div to add image to it
     let imageDiv = document.createElement('div');
     // heroDiv.setAttribute('class','heroCard');
     
+    // create image Element and src to it from the response from the api 
     let image = document.createElement('img');
     image.setAttribute('src',`${hero.image.url}`);
     imageDiv.appendChild(image);
 
+    // Div to add name of hero
     let nameDiv = document.createElement('div');
     nameDiv.setAttribute('class','name');
     nameDiv.innerHTML = `<span>Name </span>: ${hero.name}`
 
+    // add more info button 
     let moreInfo = document.createElement('div');
     moreInfo.setAttribute('class','more-info');
     moreInfo.innerHTML = `More info..`;
@@ -62,52 +68,46 @@ function displayInfo(hero){
     });
 
     sideDiv.appendChild(nameDiv);
-    // sideDiv.appendChild(remFav);
 
+    // add the created divs to the heroDiv
     heroDiv.appendChild(imageDiv);
     heroDiv.appendChild(nameDiv);
     heroDiv.appendChild(remFav)
     heroDiv.appendChild(sideDiv);
 
     heroDiv.classList.add('heroCard');
+
+    // add hero card of a single user to the div 
     display.appendChild(heroDiv);
-
-
-    console.log('hero.id',hero.id);
 }
 
+// when clicked on more info take the user to show info about the selected hero
 function showHeroInfo(hero){
     console.log('Hero clicked',hero);
     // similar behavior as an HTTP redirect
     window.location.replace(`./info.html`);
 }
 
+// remove a hero from fovorite list
 function removeFromFav(heroId,heroDiv){
-    console.log('Hero id in remove from fav',heroId);
-    console.log('Hero div',heroDiv);
     heroDiv.style.display = 'none';
 
-    if(localStorage.getItem('favHeroes')!== null){
+    // check if our fav heros list is present in localStorage
 
+    // if found remove the id of the the hero from out fav hero list and remove the element from the page as well
+    if(localStorage.getItem('favHeroes')!== null){
         let heroes = JSON.parse(localStorage.getItem('favHeroes'));
-        console.log('HerosList',heroes);
         const index = heroes.indexOf(heroId);
         console.log('Index of hero', index);
         if(heroes.includes(heroId)){
             console.log('Includes id');
             heroes.splice(index,1);
             localStorage.setItem('favHeroes',JSON.stringify(heroes));
-            // localStorage.removeItem(`favHeroes`)
         }
-
-
     }else{
         let display = document.getElementById('fav-list');
         display.innerHTML = `Add Favorite Heroes!`
     }
-
-
-
 }
 
 displayFavHeros();

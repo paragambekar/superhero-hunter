@@ -17,6 +17,10 @@ a{
     color: white;
 }
 
+#search{
+    width: 70%;
+}
+
 .trash{
     margin-right: 0%;
 }

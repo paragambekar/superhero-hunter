@@ -1,19 +1,12 @@
-
 const search = document.getElementById('search');
-
 const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
 let superherolist = document.getElementById('superheros-list');
-// searchBtn.addEventListener('click',function(){
-
-//     console.log(searchInput.value);
-//     getHero();
-
-// });
 
 
-let typingTimer;                //timer identifier
-let doneTypingInterval = 1000;  //time in ms (5 seconds)
+
+// take input from search bar and send a request to api to find the hero
+let typingTimer;                
+let doneTypingInterval = 250;  
 searchInput.addEventListener('keyup',() =>{
     clearTimeout(typingTimer);
     if (searchInput.value) {
@@ -23,14 +16,8 @@ searchInput.addEventListener('keyup',() =>{
 
 
 
+// send request to api to get information about a hero
 function getHero(){
-    
-    // fetch(`https://www.superheroapi.com/api.php/5233257620086023/search/${searchInput.value}`)
-    // .then((response)=>response.json())
-    // .then((data)=>
-    //     console.log('Data from api',data)
-    // )
-   
     let url = `https://www.superheroapi.com/api.php/5233257620086023/search/${searchInput.value}`;
     let xhrRequest = new XMLHttpRequest();
     xhrRequest.open('get',url,true);
@@ -42,21 +29,28 @@ function getHero(){
     }
 }
 
+// When clicked on more info take user to hero info page 
 function showHeroInfo(hero){
     console.log('Hero clicked',hero);
     // similar behavior as an HTTP redirect
     window.location.replace(`./info.html`);
 }
 
+
+// To  add a hero to favorite list
 function addToFavorite(id,btnId){
 
     let favHeroes;
+    // check if our favorite is already present 
+    // if not create a new array to store our favorite heroes
     if(localStorage.getItem('favHeroes') === null){
         console.log(localStorage.getItem('favHeroes'));
         favHeroes = [];
     }else{
+        // or get the favorite array 
         favHeroes = JSON.parse(localStorage.getItem('favHeroes'));
     }
+    // add superheroes id to the array check if id is already present
     if(!favHeroes.includes(id)){
         favHeroes.push(id);
     }
@@ -67,18 +61,23 @@ function addToFavorite(id,btnId){
     console.log(`hero id${id}`);
 }
 
+// display heroes according to the response received by the api
 function displayInfo(data){
 
+    // if results found, display the results
     let results = data.results;
     if(!results){
         document.getElementById('superheros-list').innerText = 'No hero found';
     }else{
+        // else create a card for a particular hero and add it to the div
         superherolist.innerHTML = '';
         for(let hero of results){
            
+            // create div to display info about single hero 
            let infoCard = document.createElement('div');
            infoCard.setAttribute('class','superhero');
 
+            // image div to display image of hero
            let imageDiv = document.createElement('div');
            imageDiv.setAttribute('class','image');
            let image = document.createElement('img');
@@ -86,11 +85,13 @@ function displayInfo(data){
            imageDiv.appendChild(image)
            infoCard.appendChild(imageDiv);
             
+            // name div to display name of hero
            let nameDiv = document.createElement('div');
            nameDiv.setAttribute('class','name');
            nameDiv.innerHTML = `Name : ${hero.name}`
             infoCard.appendChild(nameDiv);
 
+            // add favorite button  
             let favBtn = document.createElement('div');
             if(localStorage.getItem('favHeroes')!== null){
                let heroes = JSON.parse(localStorage.getItem('favHeroes'));
@@ -103,8 +104,8 @@ function displayInfo(data){
                     favBtn.setAttribute('class','fav-btn');
                }
             }
-            // favBtn.setAttribute('class','fav-btn');
             
+            // on clicking add to favorite btn add id of the hero to local Storage
             favBtn.addEventListener('click',()=>{
                 addToFavorite(hero.id,favBtn);
             });
@@ -112,7 +113,8 @@ function displayInfo(data){
             let moreInfo = document.createElement('div');
             moreInfo.setAttribute('class','more-info');
             moreInfo.innerHTML = `More Info..`;
-           
+            
+            // show more info when clicked on more-info button
             moreInfo.addEventListener('click', (event) =>{
                 console.log('Inside moreInfo');
                 localStorage.setItem('id',hero.id);
@@ -121,17 +123,11 @@ function displayInfo(data){
             });
 
 
+            // add the created divs to infoCard of a hero 
             infoCard.appendChild(favBtn);
-
             infoCard.appendChild(moreInfo);
 
-            // let workDiv = document.createElement('div');
-            // workDiv.setAttribute('class','work');
-            // workDiv.innerText = `${hero.work.occupation}`;
-
-            // infoCard.appendChild(workDiv);
-            // infoCard.addEventListener('click',);
-
+        // add the card of the hero to the div on the page 
         superherolist.appendChild(infoCard);
            
 }

@@ -33,20 +33,21 @@ function displayInfo(hero){
 
 
     let appearanceDiv = document.getElementById('appearance');
+    appearanceDiv.innerHTML = `<h3>Appereance</h3>`;
     let gender = document.createElement('p');
-    gender.innerText = `Gender : ${hero.appearance.gender}`;
+    gender.innerHTML = `<span>Gender :</span> ${hero.appearance.gender}`;
 
     let race = document.createElement('p');
-    race.innerText = `Race : ${hero.appearance.race}`
+    race.innerHTML = `<span>Race :</span> ${hero.appearance.race}`
 
     let height = document.createElement('p');
-    height.innerText = `Height : ${hero.appearance.height}`;
+    height.innerHTML = `<span>Height :</span> ${hero.appearance.height}`;
     
     let weight =  document.createElement('p');
-    weight.innerHTML = `<b>Weight</b> : ${hero.appearance.weight}`;
+    weight.innerHTML = `<span>Occupation :</span> : ${hero.appearance.weight}`;
 
     let eyeColor = document.createElement('p');
-    eyeColor.innerHTML = `Eye Color : ${hero.appearance['eye-color']}`;
+    eyeColor.innerHTML = `<span>Eye Color :</span> ${hero.appearance['eye-color']}`;
 
 
     appearanceDiv.appendChild(gender);
@@ -59,21 +60,22 @@ function displayInfo(hero){
     // Biograpghy
 
     let bioDiv = document.getElementById('bio');
+    bioDiv.innerHTML = `<h3>Biography</h3>`
     let fullName = document.createElement('p');
-    fullName.innerHTML = `Full Name : ${hero.biography['full-name']}`;
+    fullName.innerHTML = `<span>Full Name:</span> ${hero.biography['full-name']}`;
 
     let allignment = document.createElement('p');
-    allignment.innerHTML = `Alignment : ${hero.biography.alignment}`;
+    allignment.innerHTML = `<span>Alignment:</span>${hero.biography.alignment}`;
 
     let firstApperance = document.createElement('p');
-    firstApperance.innerHTML = `First Appearance : ${hero.biography['first-appearance']}`;
+    firstApperance.innerHTML = `<span>First Appearance:</span> : ${hero.biography['first-appearance']}`;
 
 
     let placeOfBirth = document.createElement('p');
-    placeOfBirth.innerHTML = `Place of Birth : ${hero.biography['place-of-birth']}`;
+    placeOfBirth.innerHTML = `<span>Place of Birth :</span> ${hero.biography['place-of-birth']}`;
 
     let publisher = document.createElement('p');
-    publisher.innerHTML = `Publisher : ${hero.biography.publisher}`;
+    publisher.innerHTML = `<span>Publisher:</span> ${hero.biography.publisher}`;
 
     bioDiv.appendChild(fullName);
     bioDiv.appendChild(allignment);
@@ -85,21 +87,22 @@ function displayInfo(hero){
    
 
     let powerDiv = document.getElementById('power-stats');
+    powerDiv.innerHTML = `<h3>Power Stats</h3>`;
 
     let intell = document.createElement('p');
-    intell.innerHTML = `Intelligence : ${hero.powerstats.intelligence}`
+    intell.innerHTML = `<span>Intelligence :</span> ${hero.powerstats.intelligence}`
 
     let strength = document.createElement('p');
-    strength.innerHTML = `Strength : ${hero.powerstats.strength}`;
+    strength.innerHTML = `<span>Strength :</span> ${hero.powerstats.strength}`;
 
     let speed = document.createElement('p');
-    speed.innerHTML = `Speed : ${hero.powerstats.speed}`;
+    speed.innerHTML = `<span>Speed :</span> ${hero.powerstats.speed}`;
 
     let durability = document.createElement('p');
-    durability.innerHTML = `Durability : ${hero.powerstats.durability}`;
+    durability.innerHTML = `<span>Durability :</span> ${hero.powerstats.durability}`;
 
     let power = document.createElement('p');
-    power.innerHTML = `Power : ${hero.powerstats.power}`;
+    power.innerHTML = `<span>Power :</span> ${hero.powerstats.power}`;
 
     powerDiv.appendChild(intell);
     powerDiv.appendChild(strength);
@@ -109,12 +112,13 @@ function displayInfo(hero){
 
 
     let workDiv = document.getElementById('work');
+    workDiv.innerHTML = `<h3>Work</h3>`;
 
     let occupation = document.createElement('p');
-    occupation.innerHTML = `Occupation: ${hero.work.occupation}`;
+    occupation.innerHTML = `<span>Occupation:</span> ${hero.work.occupation}`;
 
     let base = document.createElement('p');
-    base.innerHTML = `Base : ${hero.work.base}`;
+    base.innerHTML = `<span>Base:</span> ${hero.work.base}`;
 
     workDiv.appendChild(occupation);
     workDiv.appendChild(base);

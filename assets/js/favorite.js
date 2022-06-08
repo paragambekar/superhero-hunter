@@ -29,6 +29,9 @@ function displayInfo(hero){
 
     let heroDiv = document.createElement('div');
 
+    let sideDiv = document.createElement('div');
+    sideDiv.setAttribute('class','sideDiv');
+
     let imageDiv = document.createElement('div');
     // heroDiv.setAttribute('class','heroCard');
     
@@ -38,18 +41,22 @@ function displayInfo(hero){
 
     let nameDiv = document.createElement('div');
     nameDiv.setAttribute('class','name');
-    nameDiv.innerHTML = `Name : ${hero.name}`
+    nameDiv.innerHTML = `<span>Name </span>: ${hero.name}`
     
     let remFav = document.createElement('div');
-    remFav.innerHTML = `Remove from Favorites`;
+    remFav.innerHTML = `<i class="fas fa-trash"></i>`;
     remFav.addEventListener('click',()=>{
 
         removeFromFav(hero.id,heroDiv);
     });
 
+    sideDiv.appendChild(nameDiv);
+    // sideDiv.appendChild(remFav);
+
     heroDiv.appendChild(imageDiv);
     heroDiv.appendChild(nameDiv);
     heroDiv.appendChild(remFav)
+    heroDiv.appendChild(sideDiv);
 
     heroDiv.classList.add('heroCard');
     display.appendChild(heroDiv);

@@ -1,19 +1,53 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+    background-color: black;
+    color: white;
+}
+#heading{
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 20px;
+}
 
+a{
+    text-decoration: none;
+    color: white;
+}
 
 #fav-list{
+    width : 80%;
     margin: auto;
 }
 
+/* div i {
+    text-align: center;
+} */
+h3{
+    margin-left: 48%;
+}
 .heroCard{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid rgb(212, 209, 209);
+    border-radius: 8px;
     width: 50%;
-    margin: 10px;
+    margin: 10px auto;
     padding : 10px;
     height: 150px;
-    background-color: rgb(149, 182, 182);
+    background-color: #0a0c0c;
+}
+
+span{
+    color : #00c9ff;
+}
+
+.sideDiv{
+    display: flex;
+    justify-content: space-between;
 }
 
 /* .image{
@@ -26,4 +60,19 @@ img{
     height : 150px;
     width: 150px;
     text-align: center; 
+}
+#bimage{
+    position: absolute;
+    height: 100%;
+    width : 100%;
+    z-index: -1;
+
+}
+
+#bimage img{
+    /* position: relative; */
+    height: 100%;
+    width : 100%;
+    background: rgba(0,0,0,0.5);
+    /* opacity: 0.89; */
 }

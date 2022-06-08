@@ -4,12 +4,12 @@ const search = document.getElementById('search');
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 let superherolist = document.getElementById('superheros-list');
-searchBtn.addEventListener('click',function(){
+// searchBtn.addEventListener('click',function(){
 
-    console.log(searchInput.value);
-    getHero();
+//     console.log(searchInput.value);
+//     getHero();
 
-});
+// });
 
 
 let typingTimer;                //timer identifier
@@ -48,7 +48,7 @@ function showHeroInfo(hero){
     window.location.replace(`./info.html`);
 }
 
-function addToFavorite(id){
+function addToFavorite(id,btnId){
 
     let favHeroes;
     if(localStorage.getItem('favHeroes') === null){
@@ -57,8 +57,12 @@ function addToFavorite(id){
     }else{
         favHeroes = JSON.parse(localStorage.getItem('favHeroes'));
     }
-
-    favHeroes.push(id);
+    if(!favHeroes.includes(id)){
+        favHeroes.push(id);
+    }
+    
+    btnId.innerHTML = `Added to Favorites`
+    btnId.style.backgroundColor = '#cc0000'; 
     localStorage.setItem('favHeroes',JSON.stringify(favHeroes));
     console.log(`hero id${id}`);
 }
@@ -88,12 +92,25 @@ function displayInfo(data){
             infoCard.appendChild(nameDiv);
 
             let favBtn = document.createElement('div');
-            favBtn.innerHTML = `Add to Favorite`;
+            if(localStorage.getItem('favHeroes')!== null){
+               let heroes = JSON.parse(localStorage.getItem('favHeroes'));
+               if(heroes.includes(hero.id)){
+                   favBtn.innerHTML = `Added to Favorites`;
+                   favBtn.setAttribute('class','fav-btn');
+                   favBtn.style.backgroundColor = '#cc0000';
+               }else{
+                    favBtn.innerHTML = `Add to Favorite &nbsp; &nbsp;  <i class="fas fa-heart"></i>`;
+                    favBtn.setAttribute('class','fav-btn');
+               }
+            }
+            // favBtn.setAttribute('class','fav-btn');
+            
             favBtn.addEventListener('click',()=>{
-                addToFavorite(hero.id)
+                addToFavorite(hero.id,favBtn);
             });
 
             let moreInfo = document.createElement('div');
+            moreInfo.setAttribute('class','more-info');
             moreInfo.innerHTML = `More Info..`;
            
             moreInfo.addEventListener('click', (event) =>{
@@ -104,7 +121,7 @@ function displayInfo(data){
             });
 
 
-            infoCard.appendChild(favBtn)
+            infoCard.appendChild(favBtn);
 
             infoCard.appendChild(moreInfo);
 

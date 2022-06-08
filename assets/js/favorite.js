@@ -42,9 +42,20 @@ function displayInfo(hero){
     let nameDiv = document.createElement('div');
     nameDiv.setAttribute('class','name');
     nameDiv.innerHTML = `<span>Name </span>: ${hero.name}`
+
+    let moreInfo = document.createElement('div');
+    moreInfo.setAttribute('class','more-info');
+    moreInfo.innerHTML = `More info..`;
+    moreInfo.addEventListener('click',()=>{
+        localStorage.setItem('id',hero.id);
+        showHeroInfo(hero);
+    })
+
+    nameDiv.appendChild(moreInfo);
     
     let remFav = document.createElement('div');
     remFav.innerHTML = `<i class="fas fa-trash"></i>`;
+    remFav.setAttribute('class','trash');
     remFav.addEventListener('click',()=>{
 
         removeFromFav(hero.id,heroDiv);
@@ -63,6 +74,12 @@ function displayInfo(hero){
 
 
     console.log('hero.id',hero.id);
+}
+
+function showHeroInfo(hero){
+    console.log('Hero clicked',hero);
+    // similar behavior as an HTTP redirect
+    window.location.replace(`./info.html`);
 }
 
 function removeFromFav(heroId,heroDiv){

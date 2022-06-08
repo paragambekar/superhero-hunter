@@ -19,8 +19,13 @@ function getHeroInfo(){
 function displayInfo(hero){
 
     let infoPage = document.getElementById('info-page');
-    console.log('Hero------->',hero)
-    let imageDiv = document.getElementById('image');
+    // let infoPage = document.createElement('div');
+    // infoPage.setAttribute('id','info-page')
+    console.log('Hero------->',hero);
+
+    let imageDiv = document.createElement('div');
+    imageDiv.setAttribute('id','image');
+    // let imageDiv = document.getElementById('image');
 
     let image = document.createElement('img');
     image.setAttribute('src',`${hero.image.url}`);
@@ -32,7 +37,9 @@ function displayInfo(hero){
 
 
 
-    let appearanceDiv = document.getElementById('appearance');
+    // let appearanceDiv = document.getElementById('appearance');
+    let appearanceDiv = document.createElement('div');
+    appearanceDiv.setAttribute('id','appearance')
     appearanceDiv.innerHTML = `<h3>Appereance</h3>`;
     let gender = document.createElement('p');
     gender.innerHTML = `<span>Gender :</span> ${hero.appearance.gender}`;
@@ -59,7 +66,9 @@ function displayInfo(hero){
 
     // Biograpghy
 
-    let bioDiv = document.getElementById('bio');
+    // let bioDiv = document.getElementById('bio');
+    let bioDiv = document.createElement('div');
+    bioDiv.setAttribute('id','bio');
     bioDiv.innerHTML = `<h3>Biography</h3>`
     let fullName = document.createElement('p');
     fullName.innerHTML = `<span>Full Name:</span> ${hero.biography['full-name']}`;
@@ -86,7 +95,9 @@ function displayInfo(hero){
 
    
 
-    let powerDiv = document.getElementById('power-stats');
+    // let powerDiv = document.getElementById('power-stats');
+    let powerDiv = document.createElement('div');
+    powerDiv.setAttribute('id','power-stats');
     powerDiv.innerHTML = `<h3>Power Stats</h3>`;
 
     let intell = document.createElement('p');
@@ -111,7 +122,9 @@ function displayInfo(hero){
     powerDiv.appendChild(power);
 
 
-    let workDiv = document.getElementById('work');
+    // let workDiv = document.getElementById('work');
+    let workDiv = document.createElement('div');
+    workDiv.setAttribute('id','work');
     workDiv.innerHTML = `<h3>Work</h3>`;
 
     let occupation = document.createElement('p');

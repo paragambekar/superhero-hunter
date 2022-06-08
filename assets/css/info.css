@@ -20,3 +20,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+#appearance{
+    border: 1px solid black;
+}
+
+#power-stats{
+    border: 1px solid black;
+}   

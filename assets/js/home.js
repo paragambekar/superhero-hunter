@@ -11,6 +11,18 @@ searchBtn.addEventListener('click',function(){
 
 });
 
+
+let typingTimer;                //timer identifier
+let doneTypingInterval = 1000;  //time in ms (5 seconds)
+searchInput.addEventListener('keyup',() =>{
+    clearTimeout(typingTimer);
+    if (searchInput.value) {
+        typingTimer = setTimeout(getHero, doneTypingInterval);
+    }
+});
+
+
+
 function getHero(){
     
     // fetch(`https://www.superheroapi.com/api.php/5233257620086023/search/${searchInput.value}`)
@@ -36,11 +48,26 @@ function showHeroInfo(hero){
     window.location.replace(`./info.html`);
 }
 
+function addToFavorite(id){
+
+    let favHeroes;
+    if(localStorage.getItem('favHeroes') === null){
+        console.log(localStorage.getItem('favHeroes'));
+        favHeroes = [];
+    }else{
+        favHeroes = JSON.parse(localStorage.getItem('favHeroes'));
+    }
+
+    favHeroes.push(id);
+    localStorage.setItem('favHeroes',JSON.stringify(favHeroes));
+    console.log(`hero id${id}`);
+}
+
 function displayInfo(data){
 
     let results = data.results;
     if(!results){
-        document.getElementById('superhero').innerText = 'No hero found';
+        document.getElementById('superheros-list').innerText = 'No hero found';
     }else{
         superherolist.innerHTML = '';
         for(let hero of results){
@@ -60,16 +87,33 @@ function displayInfo(data){
            nameDiv.innerHTML = `Name : ${hero.name}`
             infoCard.appendChild(nameDiv);
 
-            let workDiv = document.createElement('div');
-            workDiv.setAttribute('class','work');
-            workDiv.innerText = `${hero.work.occupation}`;
+            let favBtn = document.createElement('div');
+            favBtn.innerHTML = `Add to Favorite`;
+            favBtn.addEventListener('click',()=>{
+                addToFavorite(hero.id)
+            });
 
-            infoCard.appendChild(workDiv);
-            infoCard.addEventListener('click',(event) =>{
+            let moreInfo = document.createElement('div');
+            moreInfo.innerHTML = `More Info..`;
+           
+            moreInfo.addEventListener('click', (event) =>{
+                console.log('Inside moreInfo');
                 localStorage.setItem('id',hero.id);
                 showHeroInfo(hero);
                 console.log('hero', event);
             });
+
+
+            infoCard.appendChild(favBtn)
+
+            infoCard.appendChild(moreInfo);
+
+            // let workDiv = document.createElement('div');
+            // workDiv.setAttribute('class','work');
+            // workDiv.innerText = `${hero.work.occupation}`;
+
+            // infoCard.appendChild(workDiv);
+            // infoCard.addEventListener('click',);
 
         superherolist.appendChild(infoCard);
            

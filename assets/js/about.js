@@ -28,11 +28,11 @@ function displayInfo(hero){
     
 
     let heroName = document.createElement('div');
-    heroName.innerText = `${hero.name}`
+    heroName.innerHTML = `<h2>${hero.name}</h2>`
 
 
 
-    let appearanceDiv = document.createElement('div');
+    let appearanceDiv = document.getElementById('appearance');
     let gender = document.createElement('p');
     gender.innerText = `Gender : ${hero.appearance.gender}`;
 
@@ -45,20 +45,46 @@ function displayInfo(hero){
     let weight =  document.createElement('p');
     weight.innerHTML = `<b>Weight</b> : ${hero.appearance.weight}`;
 
+    let eyeColor = document.createElement('p');
+    eyeColor.innerHTML = `Eye Color : ${hero.appearance['eye-color']}`;
+
 
     appearanceDiv.appendChild(gender);
     appearanceDiv.appendChild(race);
     appearanceDiv.appendChild(height);
     appearanceDiv.appendChild(weight);
+    appearanceDiv.appendChild(eyeColor);
 
 
     // Biograpghy
 
+    let bioDiv = document.getElementById('bio');
+    let fullName = document.createElement('p');
+    fullName.innerHTML = `Full Name : ${hero.biography['full-name']}`;
+
+    let allignment = document.createElement('p');
+    allignment.innerHTML = `Alignment : ${hero.biography.alignment}`;
+
+    let firstApperance = document.createElement('p');
+    firstApperance.innerHTML = `First Appearance : ${hero.biography['first-appearance']}`;
+
+
+    let placeOfBirth = document.createElement('p');
+    placeOfBirth.innerHTML = `Place of Birth : ${hero.biography['place-of-birth']}`;
+
+    let publisher = document.createElement('p');
+    publisher.innerHTML = `Publisher : ${hero.biography.publisher}`;
+
+    bioDiv.appendChild(fullName);
+    bioDiv.appendChild(allignment);
+    bioDiv.appendChild(firstApperance);
+    bioDiv.appendChild(placeOfBirth);
+    bioDiv.appendChild(publisher);
 
 
    
 
-    let powerDiv = document.createElement('div');
+    let powerDiv = document.getElementById('power-stats');
 
     let intell = document.createElement('p');
     intell.innerHTML = `Intelligence : ${hero.powerstats.intelligence}`
@@ -82,6 +108,17 @@ function displayInfo(hero){
     powerDiv.appendChild(power);
 
 
+    let workDiv = document.getElementById('work');
+
+    let occupation = document.createElement('p');
+    occupation.innerHTML = `Occupation: ${hero.work.occupation}`;
+
+    let base = document.createElement('p');
+    base.innerHTML = `Base : ${hero.work.base}`;
+
+    workDiv.appendChild(occupation);
+    workDiv.appendChild(base);
+
 
 
 
@@ -91,8 +128,10 @@ function displayInfo(hero){
     
     infoPage.appendChild(imageDiv);
     infoPage.appendChild(heroName);
+    infoPage.appendChild(bioDiv);
     infoPage.appendChild(appearanceDiv);
     infoPage.appendChild(powerDiv);
+    infoPage.appendChild(workDiv);
 
 }
 

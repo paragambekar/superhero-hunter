@@ -94,17 +94,24 @@ function displayInfo(data){
             // add favorite button  
             let favBtn = document.createElement('div');
             favBtn.setAttribute('class','fav-btn');
-            if(localStorage.getItem('favHeroes')!== null){
-               let heroes = JSON.parse(localStorage.getItem('favHeroes'));
-               if(heroes.includes(hero.id)){
-                   favBtn.innerHTML = `Added to Favorites`;
-                   favBtn.setAttribute('class','fav-btn');
-                   favBtn.style.backgroundColor = '#cc0000';
-               }else{
-                    favBtn.innerHTML = `Add to Favorite &nbsp; &nbsp;  <i class="fas fa-heart"></i>`;
+
+            if(localStorage.getItem('favHeroes') == null){
+                favBtn.innerHTML = `Add to Favorite &nbsp; &nbsp;  <i class="fas fa-heart"></i>`;
                     favBtn.setAttribute('class','fav-btn');
-               }
+            }else{
+                if(localStorage.getItem('favHeroes')!= null){
+                    let heroes = JSON.parse(localStorage.getItem('favHeroes'));
+                    if(heroes.includes(hero.id)){
+                        favBtn.innerHTML = `Added to Favorites`;
+                        favBtn.setAttribute('class','fav-btn');
+                        favBtn.style.backgroundColor = '#cc0000';
+                    }else{
+                         favBtn.innerHTML = `Add to Favorite &nbsp; &nbsp;  <i class="fas fa-heart"></i>`;
+                         favBtn.setAttribute('class','fav-btn');
+                    }
+                 }
             }
+           
             
             // on clicking add to favorite btn add id of the hero to local Storage
             favBtn.addEventListener('click',()=>{
